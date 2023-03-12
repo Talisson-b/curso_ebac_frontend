@@ -1,7 +1,7 @@
 $(document).ready(function ()  {
     $('button').click(function(){
         const tarefa = $('#adicionar').val()
-        if(tarefa != 'talissonb') {
+        if(tarefa != '') {
             $('#lista-tarefas').append('<li>' + tarefa + '</li>')
             $('#adicionar').val('')
         }
