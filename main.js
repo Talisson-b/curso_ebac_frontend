@@ -1,30 +1,44 @@
-$(document).ready(function() {  
-    const endpoint = 'https://api.github.com/users/Talisson-b'
+function Pessoa(nome) {
+    this.nome = nome;
+}
+
+function Jogador (nome, posicao, time, salario) {
+    Pessoa.call(this, nome)
+    this.posicao = posicao,
+    this.time = time
+    let _salario = salario;
+
+    this.getSalario = function() {
+        return _salario;
+    }
+
+    this.setSalario = function(valor) {
+        if(typeof valor === 'number') {
+            _salario = valor
+        }
+    }
+
     
+}
 
+function Atacante (nome) {
+    Jogador.call(this, nome, 'atacante', 'corinthians', 15000)
+}
 
-fetch(endpoint)
+function Goleiro (nome) {
+    Jogador.call(this, nome, 'Goleiro', 'corinthians', 8000)
+}
 
-.then(resposta => resposta.json() )
-.then(data => {
-    const avatar = data.avatar_url
-    const login = data.login
-    const seguidores = data.followers
-    const seguindo = data.following
-    const repositorios = data.public_repos
-    const link = data.html_url
-    const name = data.name
-    $('#avatar').attr('src',avatar)
-    $('#repositorios').text(repositorios)
-    $('#seguidores').text(seguidores)
-    $('#seguindo').text(seguindo)
-    $('#user').text(`@${login}`)
-    $('#link').attr('href',link)
-    $('#name').text(name)})
-.catch(function(erro) {
-    alert('Ocorreu um erro ao buscar perfil, tente novamente mais tarde!!')
-})
+const jogador1 = new Jogador('joaozinho', 'atacante', 'corinthians', 13000)
 
+const jogador2 = new Atacante('pedrinho')
 
-})
+const jogador3 = new Goleiro ('zezinho')
 
+console.log(jogador1)
+console.log(jogador2)
+console.log(jogador3)
+
+console.log(jogador1.getSalario())
+console.log(jogador2.getSalario())
+console.log(jogador3.getSalario())
